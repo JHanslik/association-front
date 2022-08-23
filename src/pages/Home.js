@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Header from "../components/Header";
 
 function Home(props) {
     const [associations, setAssociations] = useState([]);
@@ -16,27 +17,27 @@ function Home(props) {
     };
 
     return (
-        <div>
-            <h1>Associations</h1>
-            <section className="d-flex">
+        <>
+            <Header />
+            <section className="homePreview container row mx-auto d-flex align-items-center">
                 {associations.map((association) => {
                     return (
-                        <Link to={`/${association.slug}`}>
-                            <article
-                                className="card"
-                                style={{ width: "18rem" }}
-                            >
+                        <article
+                            className="card col-10 col-md-3 mx-auto my-3 h-100"
+                            // style={{ width: "18rem" }}
+                        >
+                            <Link to={`/${association.slug}`}>
                                 <img
                                     className="card-img-top"
                                     src={association.image}
-                                    alt={`${association.name}`}
+                                    alt={association.name}
                                 />
-                            </article>
-                        </Link>
+                            </Link>
+                        </article>
                     );
                 })}
             </section>
-        </div>
+        </>
     );
 }
 
